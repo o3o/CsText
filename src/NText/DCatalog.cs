@@ -1,10 +1,10 @@
 using SCG = System.Collections.Generic;
 using System.IO;
-namespace CsText {
-   public class Text {
-      public Text(string locale): this(locale, "../locale") {}
+namespace NText {
+   public class DCatalog {
+      public DCatalog(string locale): this(locale, "../locale") {}
 
-      public Text(string locale, string localeDir) {
+      public DCatalog(string locale, string localeDir) {
          if (string.IsNullOrEmpty(locale)) {
             throw new System.ArgumentNullException(locale);
          }
@@ -16,7 +16,6 @@ namespace CsText {
          string filename = GetLocaleFileName(locale);
          map = ReadFile(filename);
       }
-
 
       public string Locale { get; private set; }
 
@@ -68,12 +67,14 @@ namespace CsText {
       private SCG.Dictionary<string, string> fuzzyMap = new SCG.Dictionary<string, string>();
 
       public string GetText(string s) {
-         if (map.ContainsKey(s)) {
-            return map[s];
-         }
+         if (!string.IsNullOrEmpty(s)) {
+            if (map.ContainsKey(s)) {
+               return map[s];
+            }
 
-         if (!fuzzyMap.ContainsKey(s)) {
-            fuzzyMap[s] = string.Empty;
+            if (!fuzzyMap.ContainsKey(s)) {
+               fuzzyMap[s] = string.Empty;
+            }
          }
          return s;
       }
