@@ -1,7 +1,9 @@
 using SCG = System.Collections.Generic;
 using System.IO;
 namespace NText {
-   public class DCatalog {
+   public class DCatalog: ICatalog {
+      private SCG.Dictionary<string, string> map = new SCG.Dictionary<string, string>();
+      private SCG.Dictionary<string, string> fuzzyMap = new SCG.Dictionary<string, string>();
       public DCatalog(string locale): this(locale, "../locale") {}
 
       public DCatalog(string locale, string localeDir) {
@@ -14,7 +16,9 @@ namespace NText {
          }
          this.localeDir = localeDir;
          string filename = GetLocaleFileName(locale);
-         map = ReadFile(filename);
+         if (File.Exists(filename)) {
+            map = ReadFile(filename);
+         }
       }
 
       public string Locale { get; private set; }
@@ -63,8 +67,6 @@ namespace NText {
          return v.Trim().Trim('"');
       }
 
-      private SCG.Dictionary<string, string> map = new SCG.Dictionary<string, string>();
-      private SCG.Dictionary<string, string> fuzzyMap = new SCG.Dictionary<string, string>();
 
       public string GetText(string s) {
          if (!string.IsNullOrEmpty(s)) {
@@ -79,7 +81,7 @@ namespace NText {
          return s;
       }
 
-      public void SaveFuzzyFile() {
+      public void Save() {
          WriteFuzzyFile(GetFuzzyLocaleFileName(this.Locale));
       }
 

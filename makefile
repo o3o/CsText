@@ -1,4 +1,4 @@
-NAME = CsText.dll 
+NAME = NText.dll 
 VERSION = 0.1.0
 TARGET = library
 

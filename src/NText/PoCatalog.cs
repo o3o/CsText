@@ -132,5 +132,9 @@ namespace NText {
          }
          return translated;
       }
+
+      public void Save() {
+         throw new System.NotImplementedException("Not implemented.");
+      }
    }
 }
