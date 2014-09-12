@@ -71,7 +71,7 @@ namespace NText {
       public string GetText(string s) {
          if (!string.IsNullOrEmpty(s)) {
             if (map.ContainsKey(s)) {
-               return map[s];
+               return string.IsNullOrEmpty(map[s]) ? s : map[s];
             }
 
             if (!fuzzyMap.ContainsKey(s)) {

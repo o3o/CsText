@@ -14,7 +14,7 @@ namespace NText {
          //
          // trailing spaces without quote
          Assert.AreEqual(cs.GetText("cat"), "gatto");
-         Assert.AreEqual(cs.GetText("null"), "");
+         Assert.AreEqual(cs.GetText("not yet translated"), "not yet translated");
          // UTF-8 chars
          Assert.AreEqual(cs.GetText("accento"), "Da Viá");
          Assert.IsNull(cs.GetText(null));
