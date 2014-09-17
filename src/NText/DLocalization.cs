@@ -31,5 +31,9 @@ namespace NText {
             return new NullCatalog();
          }
       }
+
+      public SCG.IEnumerable<ICatalog> Catalogs {
+         get { return catalogs.Values; }
+      }
    }
 }

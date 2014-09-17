@@ -35,5 +35,9 @@ namespace NText {
             return catalogs[languageCode.ToLower()];
          }
       }
+
+      public SCG.IEnumerable<ICatalog> Catalogs {
+         get { return catalogs.Values; }
+      }
    }
 }
